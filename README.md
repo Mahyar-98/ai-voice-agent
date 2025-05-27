@@ -84,14 +84,6 @@ npm install
 
 ---
 
-- [x] Callback form UI
-- [x] Twilio integration
-- [x] Firebase Auth with magic link
-- [x] Protected dashboard
-- [ ] Add call transcript to dashboard
-- [ ] Voice AI agent personality fine-tuning
-
----
 
 ## 👤 Author
 
