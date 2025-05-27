@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Voice AI Callback Agent
 
-## Getting Started
+A minimalist and secure Voice AI Callback experience built with **Next.js**, **Firebase**, and **Twilio**. This app allows users to request a callback, engage in a natural voice conversation powered by AI, and get redirected to a secure dashboard with a summary — all without creating an account.
 
-First, run the development server:
+---
+
+## 🔧 Features
+
+- 🔊 **Voice AI Calls** – Talk to users through Twilio voice calls using an AI agent.
+- 📋 **Callback Request Form** – Collects name, email, and call reason.
+- 🔐 **Passwordless Email Sign-In** – Secure login via Firebase email magic link.
+- 📊 **Protected Dashboard** – View user-submitted info after successful auth.
+- ☁️ **Firebase Backend** – Stores call request data and handles auth securely.
+- 💨 **Minimalist Design** – Built with Tailwind CSS (optional, toggleable).
+
+---
+
+## 📁 Tech Stack
+
+- **Frontend**: [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/)
+- **Backend**: [Firebase](https://firebase.google.com/) (Auth, Firestore, Functions)
+- **Voice Service**: [Twilio Programmable Voice](https://www.twilio.com/voice)
+- **Deployment**: Vercel + Firebase Functions
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/voice-ai-callback-agent.git
+cd voice-ai-callback-agent
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Set up Firebase
 
-## Learn More
+- Initialize Firebase in the `/functions` folder:
+  ```bash
+  firebase init functions
+  ```
+- Add secrets securely:
+  ```bash
+  firebase functions:secrets:set TWILIO_SID
+  firebase functions:secrets:set TWILIO_AUTH_TOKEN
+  firebase functions:secrets:set TWILIO_PHONE_NUMBER
+  ```
 
-To learn more about Next.js, take a look at the following resources:
+- In `functions/index.js`, access secrets like:
+  ```js
+  const twilioSid = param('TWILIO_SID').value();
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Configure Firebase Auth (Email Link)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Enable **Email Link (passwordless sign-in)** in the Firebase Console under Authentication > Sign-in methods.
+- Add your app's domain to the list of authorized domains.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Local Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Run the frontend locally:
+  ```bash
+  npm run dev
+  ```
+
+---
+
+## 🔒 Environment Variables
+
+- Firebase handles secrets securely via the CLI.
+- For frontend `.env.local`:
+  ```env
+  NEXT_PUBLIC_FIREBASE_API_KEY=...
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+  ```
+
+---
+
+- [x] Callback form UI
+- [x] Twilio integration
+- [x] Firebase Auth with magic link
+- [x] Protected dashboard
+- [ ] Add call transcript to dashboard
+- [ ] Voice AI agent personality fine-tuning
+
+---
+
+## 👤 Author
+
+Mahyar Erfanian  
+[LinkedIn](https://www.linkedin.com/in/mahyar-erfanian-67968279/) • [GitHub](https://github.com/Mahyar-98)
+
+---
